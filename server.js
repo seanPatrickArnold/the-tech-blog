@@ -14,7 +14,8 @@ const sequelize = require('./config/connection');
 const sess = {
   secret: 'Super secret secret',
   cookie: {
-    maxAge: 1*5*1000},
+    expires: new Date(Date.now() + 300000),
+    },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
