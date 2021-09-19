@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
+const checkIfActive = require('../utils/active');
 
 router.get('/', withAuth, (req, res) => {
   if (req.session) {
@@ -42,6 +43,12 @@ router.get('/', withAuth, (req, res) => {
         res.status(500).json(err);
       });
    }
+});
+
+router.get('/post', withAuth, (req, res) => {
+  if (req.session) {
+    res.render('add-post');
+  }
 });
 
   router.get('/edit/:id', withAuth, (req, res) => {

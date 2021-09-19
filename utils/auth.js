@@ -8,12 +8,15 @@ function withAuth(req, res, next) {
     const timeLogged = currentTime - req.session.lastActive;
     console.log(currentTime)
     console.log(timeLogged);
-    if (timeLogged > 5000) {
+    if (timeLogged > 60000) {
       if (req.session.loggedIn) {
         req.session.destroy(() => {
           res.redirect('/login');
         });
       }
+    }
+    else {
+      req.session.lastActive = Date.now();
     }
     next();
   }

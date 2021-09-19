@@ -54,6 +54,10 @@ router.get('/login', checkIfActive, (req, res) => {
   res.render('login');
 });
 
+router.get('/signup', checkIfActive, (req, res) => {
+  res.render('signup');
+});
+
 router.get('/post/:id', checkIfActive, (req, res) => {
   Post.findOne({
     where: {

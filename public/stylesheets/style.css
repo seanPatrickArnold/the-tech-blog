@@ -4,6 +4,7 @@
 
 body,
 html {
+  background-color: #bbce99;
   height: 100%;
   padding: 0;
   margin: 0;
@@ -11,9 +12,13 @@ html {
   color: #333;
 }
 
+header a {
+  color: rgb(150, 187, 125);
+}
+
 a {
   text-decoration: none;
-  color: #225ca3;
+  color: black;
   font-weight: bold;
   transition: color 0.1s;
 }
@@ -35,6 +40,11 @@ button {
 
 button:hover {
   background-color: #3486eb;
+}
+
+li {
+  border: solid 1px black;
+  list-style-type: none;
 }
 
 .post-list {
@@ -78,6 +88,7 @@ form label {
 }
 
 header {
+  background-color: black;
   border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
@@ -152,16 +163,14 @@ main {
 .comment {
   padding: 1%;
   margin-bottom: 1%;
-}
-
-.comment:nth-child(odd) {
-  background-color: #fff5eb;
+  border: solid 1px black;
 }
 
 .comment .meta {
+  background-color: black;
+  color: rgb(150, 187, 125);
   font-size: 90%;
   margin-bottom: 0.5%;
-  opacity: 0.6;
 }
 
 .new-post-form input {
@@ -185,4 +194,8 @@ footer {
   padding-top: 0;
   padding-left: 0;
   width: 500px;
+}
+
+body div header h1 a {
+  padding-right: 10px;
 }

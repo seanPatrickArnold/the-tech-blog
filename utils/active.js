@@ -13,7 +13,7 @@ function checkIfActive(req, res, next) {
         const timeLogged = currentTime - req.session.lastActive;
         console.log(currentTime)
         console.log(timeLogged);
-        if (timeLogged > 5000) {
+        if (timeLogged > 60000) {
             req.session.loggedIn = false;
         }
         else {
