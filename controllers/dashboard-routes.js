@@ -4,7 +4,6 @@ const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, (req, res) => {
-  console.log('MAXAGE: ', req.session.cookie.maxAge);
   if (req.session) {
     Post.findAll({
       where: {

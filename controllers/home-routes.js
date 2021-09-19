@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment, Vote } = require('../models');
+const withAuth = require('../utils/auth');
+const checkIfActive = require('../utils/active');
 
 // get all posts for homepage
-router.get('/', (req, res) => {
-  console.log('MAXAGE: ', req.session);
+router.get('/', checkIfActive, (req, res) => {
   console.log('======================');
   Post.findAll({
     attributes: [
@@ -44,7 +45,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', checkIfActive, (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
@@ -53,7 +54,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/post/:id', (req, res) => {
+router.get('/post/:id', checkIfActive, (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id

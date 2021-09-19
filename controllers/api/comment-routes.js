@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
+const checkIfActive = require('../../utils/active');
 
-router.get('/', (req, res) => {
+router.get('/', checkIfActive, (req, res) => {
   Comment.findAll()
     .then(dbCommentData => res.json(dbCommentData))
     .catch(err => {
@@ -10,9 +11,9 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', checkIfActive, (req, res) => {
   // check the session
-  if (req.session) {
+  if (req.session.loggedIn) {
     Comment.create({
       comment_text: req.body.comment_text,
       post_id: req.body.post_id,
@@ -27,7 +28,7 @@ router.post('/', (req, res) => {
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkIfActive, (req, res) => {
   Comment.destroy({
     where: {
       id: req.params.id
